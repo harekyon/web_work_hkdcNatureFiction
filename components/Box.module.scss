@@ -1,0 +1,29 @@
+.box {
+  &--content {
+    width: 130px;
+    height: 130px;
+    background: black;
+    border: solid 0.5px white;
+    white-space: pre-wrap;
+    position: relative;
+  }
+  &--back {
+    &__border {
+      width: 130px;
+      height: 130px;
+      border: solid 0.5px white;
+      position: absolute;
+      top: 10px;
+      left: -10px;
+      z-index: -1;
+    }
+    &__slant {
+      width: 15px;
+      height: auto;
+      border: solid 0.5px white;
+      position: absolute;
+      transform: rotate(-45deg);
+      transform-origin: 0% 0%;
+    }
+  }
+}
