@@ -1,7 +1,13 @@
-import styles from "../components/Box.module.scss";
+/*=====================================*/
+// Cube COMP
+// Cube作りたい1
+// 全面と背面にrectを作り、側面に線を張る
+/*=====================================*/
+
+import styles from "../components/Cube.module.scss";
 import { css } from "@emotion/react";
 
-export default function Box() {
+export default function Cube() {
   return (
     <div className={styles["box--content"]}>
       <div className={styles["box--back__border"]}>

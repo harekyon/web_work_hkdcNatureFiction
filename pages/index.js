@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import Box from "@/components/Box";
+import Cube from "@/components/Cube";
 import { css } from "@emotion/react";
+import CubeSurfaceCompose from "@/components/CubeSurfaceCompose";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         margin: 50px;
       `}
     >
-      <Box></Box>
+      <CubeSurfaceCompose />
     </div>
   );
 }
