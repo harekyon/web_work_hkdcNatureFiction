@@ -6,24 +6,36 @@
 
 import styles from "../components/CubeSurfaceCompose.module.scss";
 import { css } from "@emotion/react";
+import { useEffect } from "react";
 
+let boxFrontDOM = "";
+let boxRightDOM = "";
+let boxLeftDOM = "";
+let boxBottomDOM = "";
 export default function CubeSurfaceCompose() {
+  useEffect(() => {
+    boxFrontDOM = document.getElementById("box--front__surface");
+    boxRightDOM = document.getElementById("box--side__surface--left");
+    boxLeftDOM = document.getElementById("box--side__surface--right");
+    boxBottomDOM = document.getElementById("box--side__surface--bottom");
+  });
+
   return (
     <div className={styles["box--content"]}>
-      <div className={styles["box--front__surface"]}></div>
-      <div className={styles["box--back__surface"]}></div>
-      <div
-        className={`${styles["box--side__surface"]} ${styles["box--side__surface--left"]}`}
-      ></div>
-      <div
-        className={`${styles["box--side__surface"]} ${styles["box--side__surface--right"]}`}
-      ></div>
-      <div
-        className={`${styles["box--side__surface"]} ${styles["box--side__surface--right"]}`}
-      ></div>
-      <div
-        className={`${styles["box--side__surface"]} ${styles["box--side__surface--bottom"]}`}
-      ></div>
+      <a href="#">
+        <div
+          id="box--front__surface"
+          className={styles["box--front__surface"]}
+        ></div>
+        <div
+          id="box--side__surface--left"
+          className={`${styles["box--side__surface"]} ${styles["box--side__surface--left"]}`}
+        ></div>
+        <div
+          id="box--side__surface--bottom"
+          className={`${styles["box--side__surface"]} ${styles["box--side__surface--bottom"]}`}
+        ></div>
+      </a>
     </div>
   );
 }

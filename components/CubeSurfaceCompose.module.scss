@@ -4,65 +4,94 @@
 // 全てrectで作ってみる
 /*=====================================*/
 
+$boxWidth: 200px;
+$boxHeight: 200px;
+$boxThic: 10px;
+$hoverEffectVal: 4px;
+
 .box {
   &--content {
-    width: 300px;
-    height: 300px;
+    width: $boxWidth;
+    height: $boxHeight;
     white-space: pre-wrap;
     position: relative;
   }
   &--front {
     &__surface {
-      width: 300px;
-      height: 300px;
+      width: $boxWidth;
+      height: $boxHeight;
       background: black;
       border: solid 1px white;
       position: absolute;
-      top: -10px;
-      right: -10px;
+      top: -$boxThic/2;
+      right: -$boxThic/2;
       z-index: 1;
-    }
-  }
-  &--back {
-    &__surface {
-      width: 300px;
-      height: 300px;
-      // background: white;
-      border: solid 1px white;
-      // opacity: 0.3;
-      position: absolute;
-      top: 10px;
-      left: -10px;
-      z-index: -1;
+      transition: 0.1s;
     }
   }
   &--side {
     &__surface {
-      // background: red;
-      border: solid 1px white;
+      border: solid 1px;
+      border-image-slice: 1;
       position: absolute;
       transform-origin: 0% 0%;
       &--left {
-        width: 20px;
-        height: 300px;
+        width: $boxThic;
+        height: $boxHeight;
         transform: skewy(-45deg);
-        top: 10px;
-        left: -10px;
+        top: $boxThic/2;
+        left: -$boxThic/2;
+        border-image: linear-gradient(
+          to left,
+          #00000000 0%,
+          #00000000 5%,
+          #fff 6%,
+          #d5d5d5 40%,
+          #2f2f2f 100%
+        );
+        border-right-style: hidden;
+        border-bottom-style: hidden;
+        border-image-slice: 1;
+        transition: 0.1s;
       }
-      &--right {
-        width: 20px;
-        height: 300px;
-        transform: skewy(-45deg);
-        top: 10px;
-        right: -10px;
-      }
+
       &--bottom {
-        width: 300px;
-        height: 20px;
+        width: $boxWidth;
+        height: $boxThic;
+        background-clip: padding-box;
         transform: skewx(-45deg);
-        bottom: -10px;
-        right: -10px;
+        bottom: -$boxThic/2;
+        right: -$boxThic/2;
+        border-image: linear-gradient(
+          to bottom,
+          #fff 0%,
+          #d5d5d5 40%,
+          #2f2f2f 100%
+        );
+        border-top-style: hidden;
+        border-image-slice: 1;
+        transition: 0.1s;
       }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  a:hover {
+    .box--front__surface {
+      // background: red;
+      top: -1px;
+      right: -1px;
+      transition: 0.1s;
+    }
+    .box--side__surface--left {
+      width: $boxThic - $hoverEffectVal;
+      transition: 0.1s;
+    }
+    .box--side__surface--bottom {
+      height: $boxThic - $hoverEffectVal;
+      right: -1px;
+      transition: 0.1s;
     }
   }
 }
