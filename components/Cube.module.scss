@@ -1,34 +1,95 @@
 /*=====================================*/
-// Cube COMP
-// Cube作りたい1
-// 全面と背面にrectを作り、側面に線を張る
+// Cube STYLE
+// Cube作りたい2
+// 全てrectで作ってみる
 /*=====================================*/
+$boxThic: 6px;
+$hoverEffectVal: 3px;
+
 .box {
   &--content {
-    width: 130px;
-    height: 130px;
-    background: black;
-    border: solid 0.5px white;
     white-space: pre-wrap;
     position: relative;
   }
-  &--back {
-    &__border {
-      width: 130px;
-      height: 130px;
-      border: solid 0.5px white;
+  &--front {
+    &__surface {
+      background: black;
+      border: solid 1px white;
       position: absolute;
-      top: 10px;
-      left: -10px;
-      z-index: -1;
+      top: -$boxThic/2;
+      right: -$boxThic/2;
+      z-index: 1;
+      transition: 0.1s;
+      &__number {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-family: "din-2014", sans-serif;
+        font-weight: 300;
+      }
     }
-    &__slant {
-      width: 15px;
-      height: auto;
-      border: solid 0.5px white;
+  }
+  &--side {
+    &__surface {
+      border: solid 1px;
+      border-image-slice: 1;
       position: absolute;
-      transform: rotate(-45deg);
       transform-origin: 0% 0%;
+
+      &--left {
+        width: $boxThic;
+        transform: skewy(-45deg);
+        top: $boxThic/2;
+        left: -$boxThic/2;
+        border-image: linear-gradient(
+          to left,
+          #00000000 0%,
+          #00000000 5%,
+          #fff 6%,
+          #d5d5d5 40%,
+          #2f2f2f 100%
+        );
+        border-right-style: hidden;
+        border-bottom-style: hidden;
+        border-image-slice: 1;
+        transition: 0.1s;
+      }
+
+      &--bottom {
+        height: $boxThic;
+        background-clip: padding-box;
+        transform: skewx(-45deg);
+        bottom: -$boxThic/2;
+        right: -$boxThic/2;
+        border-image: linear-gradient(
+          to bottom,
+          #fff 0%,
+          #d5d5d5 40%,
+          #2f2f2f 100%
+        );
+        border-top-style: hidden;
+        border-image-slice: 1;
+        transition: 0.1s;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  a:hover {
+    .box--front__surface {
+      top: -1px;
+      right: -1px;
+      transition: 0.1s;
+      background: red;
+    }
+    .box--side__surface--left {
+      width: $boxThic - $hoverEffectVal;
+      transition: 0.1s;
+    }
+    .box--side__surface--bottom {
+      height: $boxThic - $hoverEffectVal;
+      right: -1px;
+      transition: 0.1s;
     }
   }
 }

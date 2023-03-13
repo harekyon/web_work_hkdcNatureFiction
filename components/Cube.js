@@ -1,38 +1,71 @@
 /*=====================================*/
 // Cube COMP
-// Cube作りたい1
-// 全面と背面にrectを作り、側面に線を張る
 /*=====================================*/
 
 import styles from "../components/Cube.module.scss";
 import { css } from "@emotion/react";
 
-export default function Cube() {
+export default function Cube({
+  boxWidth = "100px",
+  boxHeight = "100px",
+  boxThic = "6px",
+  hoverEffectVal = "3px",
+}) {
   return (
-    <div className={styles["box--content"]}>
-      <div className={styles["box--back__border"]}>
+    <div
+      className={styles["box--content"]}
+      css={css`
+        width: ${boxWidth};
+        height: ${boxHeight};
+      `}
+    >
+      <a
+        href="#"
+        css={css`
+          :hover {
+            .box--side__surface--left {
+              width: calc(${boxThic - hoverEffectVal});
+            }
+            .box--side__surface--bottom {
+              height: calc(${boxThic - hoverEffectVal});
+            }
+          }
+        `}
+      >
         <div
-          className={styles["box--back__slant"]}
+          id="box--front__surface"
+          className={styles["box--front__surface"]}
           css={css`
-            bottom: -1px;
-            left: -1px;
+            width: ${boxWidth};
+            height: ${boxHeight};
+            top: -${String(Number(boxThic.replace("px", "")) / 2) + boxThic.replace(/[0-9]/g, "")};
+            right: -${String(Number(boxThic.replace("px", "")) / 2) + boxThic.replace(/[0-9]/g, "")};
+          `}
+        >
+          <p className={styles["box--front__surface__number"]}>01</p>
+        </div>
+        <div
+          id="box--side__surface--left"
+          className={`${styles["box--side__surface"]} ${styles["box--side__surface--left"]}`}
+          css={css`
+            width: ${boxThic};
+            height: ${boxHeight};
+            top: ${String(Number(boxThic.replace("px", "")) / 2) +
+            boxThic.replace(/[0-9]/g, "")};
+            right: -${String(Number(boxThic.replace("px", "")) / 2) + boxThic.replace(/[0-9]/g, "")};
           `}
         ></div>
         <div
-          className={styles["box--back__slant"]}
+          id="box--side__surface--bottom"
+          className={`${styles["box--side__surface"]} ${styles["box--side__surface--bottom"]}`}
           css={css`
-            top: -0px;
-            left: -1px;
+            width: ${boxWidth};
+            height: ${boxThic};
+            bottom: -${String(Number(boxThic.replace("px", "")) / 2) + boxThic.replace(/[0-9]/g, "")};
+            right: -${String(Number(boxThic.replace("px", "")) / 2) + boxThic.replace(/[0-9]/g, "")};
           `}
         ></div>
-        <div
-          className={styles["box--back__slant"]}
-          css={css`
-            bottom: -1px;
-            right: -14px;
-          `}
-        ></div>
-      </div>
+      </a>
     </div>
   );
 }
